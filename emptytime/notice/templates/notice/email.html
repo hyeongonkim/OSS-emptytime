@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Email</title>
+</head>
+<body>
+    <h1> 준호가 만든 웹앱 들어갈 자리다</h1>
+    <a href="{% url 'control' %}">관리 </a>
+    {% for notice in notice_list%}
+        <h3>{{notice.title}}}</h3>
+    {% endfor%}
+
+
+</body>
+</html>
