@@ -9,6 +9,9 @@
     <a href="{% url 'addTag' %}">태그 추가</a>
     <h2>공사중</h2>
 
+    {% for tag in tag_list  %}
+        <h3>{{ tag.myTag }}</h3>
+    {% endfor %}
 
 </body>
 </html>

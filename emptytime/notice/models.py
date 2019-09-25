@@ -11,6 +11,6 @@ class TitleData(models.Model):
 #         return self.myEmail
 class Mytag(models.Model):
     myTag = models.CharField(max_length=20)
-    account=models.ForeignKey(User,on_delete=models.CASCADE)
+    account=models.ForeignKey(User,on_delete=models.CASCADE, default='1')
     def __str__(self):
-        return self.tag
+        return self.myTag

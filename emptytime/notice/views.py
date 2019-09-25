@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect
-from . models import TitleData
+from django.shortcuts import render, redirect, get_object_or_404
+from . models import TitleData, Mytag
 from django.http import HttpResponse
 from .forms import UserForm, LoginForm, TagForm
 from django.contrib.auth.models import User
@@ -19,7 +19,12 @@ def empty(request):
 
 
 def email_control(request):
-    return render(request, 'notice/email_service_control.html')
+    user = request.user
+    tag_list = Mytag.objects.filter(account=user).all()
+    return render(request, 'notice/email_service_control.html', {'tag_list': tag_list})
+
+
+
 
 def signup(request):
     if request.method == "POST":
@@ -54,3 +59,4 @@ def addTag(request):
           tag.account = User.objects.get(username = request.user.get_username())
           tag.save()
           return redirect('home')
+
