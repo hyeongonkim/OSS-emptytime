@@ -35,11 +35,17 @@ class LoginForm(forms.ModelForm):
 class TagForm(ModelForm):
     class Meta:
         model = Mytag
-        fields = ['myTag']
+        fields = ['account','myTag']
+        widgets = {
+            'account': forms.HiddenInput(),  # 어떤 계정에 저장하는지 숨김
+
+        }
         labels = {
+            'account': _('ID입력'),
             'myTag': _('태그 입력'),
         }
         help_texts = {
+            'account': _('ID를 입력해주세요'),
             'myTag': _('태그를 입력해주세요.'),
         }
 

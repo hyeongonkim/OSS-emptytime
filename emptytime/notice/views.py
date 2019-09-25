@@ -52,11 +52,15 @@ def signin(request):
         return render(request, 'notice/login.html', {'form': form})
 def addTag(request):
   if request.method == "POST":
-      #저장
       form = TagForm(request.POST)
+
       if form.is_valid():
-          tag = form.save(commit = False)
-          tag.account = User.objects.get(username = request.user.get_username())
-          tag.save()
+
+          form.save()
+
           return redirect('home')
+  account = request.user
+
+  form = TagForm(initial={'account': account})
+  return render(request, 'notice/addTag.html',{'form':form})
 
