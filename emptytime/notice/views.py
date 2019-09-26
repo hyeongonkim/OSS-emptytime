@@ -58,9 +58,14 @@ def addTag(request):
 
           form.save()
 
-          return redirect('home')
+          return redirect('control')
   account = request.user
 
   form = TagForm(initial={'account': account})
   return render(request, 'notice/addTag.html',{'form':form})
 
+def delTag(request, tag_id):
+    item=get_object_or_404(Mytag, pk = tag_id)
+    item.delete()
+
+    return redirect('control')

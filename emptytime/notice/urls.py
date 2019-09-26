@@ -9,4 +9,5 @@ urlpatterns = [
     path('join/', views.signup, name= 'join'),
     path('login/', views.signin, name='login'),
     path('addTag/', views.addTag, name='addTag'),
+    path('delTag/<int:tag_id>',views.delTag, name = 'delTag'),
 ]

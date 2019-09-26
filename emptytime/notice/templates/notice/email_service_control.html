@@ -11,6 +11,7 @@
 
     {% for tag in tag_list  %}
         <h3>{{ tag.myTag }}</h3>
+        <a href="{% url 'delTag' tag_id=tag.id %}">삭제</a>
     {% endfor %}
 
 </body>
