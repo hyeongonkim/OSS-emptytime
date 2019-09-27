@@ -8,12 +8,12 @@ from bs4 import BeautifulSoup
 
 def index(request):
     user_list = User.objects.order_by('username_text')
-    return render(request, 'html/index.html', {'user_list': user_list})
+    return render(request, 'timetable/index.html', {'user_list': user_list})
 
 
 def detail(request, username_text):
     user = get_object_or_404(User, username_text=username_text)
-    return render(request, 'html/detail.html', {'user': user})
+    return render(request, 'timetable/detail.html', {'user': user})
 
 
 def post(request):
@@ -25,7 +25,7 @@ def post(request):
             return redirect('index')
     else:
         form = PostForm()
-    return render(request, 'html/forms.html', {'form': form})
+    return render(request, 'timetable/forms.html', {'form': form})
 
 
 def delete(request, username_text):
@@ -114,42 +114,34 @@ def result(request):
         return mon, tue, wed, thu, fri, sat
 
     def convert_json(mon, tue, wed, thu, fri, sat):
-        def list_to_json(list):
-            out_str = "["
-            for val in list:
-                out_str += time_to_json(val)
-                out_str += ", "
+        def list_to_json(lists, date):
+            out_list = str()
+            for val in lists:
+                out_list += time_to_json(val, date)
+            return out_list
 
-            if len(out_str) > 2:
-                out_str = out_str[:-2]
 
-            out_str += "], "
-            return out_str
-
-        def time_to_json(val):
-            out_str = "{\"start\":\""
+        def time_to_json(val, date):
+            out_str = str()
+            out_str += date
+            out_str += "T"
             out_str += val[0]
-            out_str += "\", \"end\":\""
+            out_str += ":00"
+            out_str += date
+            out_str += "T"
             out_str += val[1]
-            out_str += "\"}"
+            out_str += ":00"
             return out_str
 
-        out_str = "{"
-        out_str += "\"mon\":"
-        out_str += list_to_json(mon)
-        out_str += "\"tue\":"
-        out_str += list_to_json(tue)
-        out_str += "\"wed\":"
-        out_str += list_to_json(wed)
-        out_str += "\"thu\":"
-        out_str += list_to_json(thu)
-        out_str += "\"fri\":"
-        out_str += list_to_json(fri)
-        out_str += "\"sat\":"
-        out_str += list_to_json(sat)
-        out_str = out_str[:-2]
-        out_str += "}"
-        return out_str
+
+        out_list = str()
+        out_list += list_to_json(mon, '1970-01-05')
+        out_list += list_to_json(tue, '1970-01-06')
+        out_list += list_to_json(wed, '1970-01-07')
+        out_list += list_to_json(thu, '1970-01-08')
+        out_list += list_to_json(fri, '1970-01-09')
+        out_list += list_to_json(sat, '1970-01-10')
+        return out_list
 
     timetables = list()
     users = User.objects.order_by('username_text')
@@ -159,4 +151,4 @@ def result(request):
 
     mon, tue, wed, thu, fri, sat = processed_table(timetables)
     del timetables
-    return render(request, 'html/result.html', {'result_json': convert_json(mon, tue, wed, thu, fri, sat)})
+    return render(request, 'timetable/result.html', {'result_json': convert_json(mon, tue, wed, thu, fri, sat)})

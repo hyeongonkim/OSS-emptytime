@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta charset='utf-8'/>
+    <link href="{% static 'packages/core/main.css'%}" rel='stylesheet'/>
+    <link href="{% static 'packages/daygrid/main.css'%}" rel='stylesheet'/>
+    <link href="{% static 'packages/timegrid/main.css'%}" rel='stylesheet'/>
+    <link href="{% static 'packages/list/main.css'%}" rel='stylesheet'/>
+    <script src="{% static 'packages/core/main.js'%}"></script>
+    <script src="{% static 'packages/interaction/main.js'%}"></script>
+    <script src="{% static 'packages/daygrid/main.js'%}"></script>
+    <script src="{% static 'packages/timegrid/main.js'%}"></script>
+    <script src="{% static 'packages/list/main.js'%}"></script>
+    <script src="{% static 'lib/jquery.js'%}"></script>
+    <script src="{% static 'lib/moment.js'%}"></script>
+	<link href="{% static 'overlap_full.css'%}" rel='stylesheet' />
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendarEl = document.getElementById('calendar');
+
+            var list = "{{result_json}}";
+            var eventList = [];
+            console.log(list);
+            for (var i = 0; i < list.length; i += 38) {
+                var event = {
+                    "start": list.substring(i, i + 19),
+                    "end": list.substring(i + 19, i + 38),
+                };
+                eventList.push(event);
+            }
+            console.log(eventList);
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                plugins: ['timeGrid'],
+				header: {
+                	left: "",
+					center: "",
+					right: "",
+				},
+                defaultView: "timeGridWeek",
+                defaultDate: '1970-01-05',
+                navLinks: true,
+                columnHeaderFormat: {
+                    weekday: 'short',
+                },
+                height: "auto",
+                hiddenDays: [0],
+                weekNumbers: false,
+                weekNumbersWithinDays: false,
+                weekNumberCalculation: 'ISO',
+                allDaySlot: false,
+                slotDuration: '00:30:00',
+                minTime: '08:00:00',
+                maxTime: '23:00:00',
+                editable: true,
+                eventLimit: true,
+                events: eventList
+            });
+
+            calendar.render();
+        });
+
+    </script>
+    <style>
+
+        body {
+            margin: 40px 10px;
+            padding: 0;
+            font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+
+        #calendar {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+    </style>
+</head>
+<body>
+<div>
+    <h1>시간표 병합결과</h1>
+</div>
+<div id='calendar'></div>
+
+</body>
+</html>
