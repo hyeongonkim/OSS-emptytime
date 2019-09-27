@@ -13,9 +13,51 @@
     <script src="{% static 'packages/timegrid/main.js'%}"></script>
     <script src="{% static 'packages/list/main.js'%}"></script>
     <script src="{% static 'lib/jquery.js'%}"></script>
-	<link href="{% static 'overlap_full.css'%}" rel='stylesheet' />
+    <script src="{% static 'lib/html2canvas.js'%}"></script>
+    <link href="{% static 'overlap_full.css'%}" rel='stylesheet'/>
 
     <script>
+        function calendarShot() {
+            html2canvas(document.getElementById("calendar"))
+                .then(function (canvas) {
+                    drawImg(canvas.toDataURL('image/jpeg'));
+                    saveAs(canvas.toDataURL(), 'emptytime.jpg');
+                }).catch(function (err) {
+                console.log(err);
+            });
+        }
+
+        function drawImg(imgData) {
+            console.log(imgData);
+            return new Promise(function reslove() {
+                var canvas = document.getElementById('canvas');
+                var ctx = canvas.getContext('2d');
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                var imageObj = new Image();
+                imageObj.onload = function () {
+                    ctx.drawImage(imageObj, 10, 10);
+                };
+                imageObj.src = imgData;
+
+            }, function reject() {
+            });
+
+        }
+
+        function saveAs(uri, filename) {
+            var link = document.createElement('a');
+            if (typeof link.download === 'string') {
+                link.href = uri;
+                link.download = filename;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            } else {
+                window.open(uri);
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', function () {
             var calendarEl = document.getElementById('calendar');
 
@@ -33,11 +75,11 @@
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 plugins: ['timeGrid'],
-				header: {
-                	left: "",
-					center: "",
-					right: "",
-				},
+                header: {
+                    left: "",
+                    center: "",
+                    right: "",
+                },
                 defaultView: "timeGridWeek",
                 defaultDate: '1970-01-05',
                 navLinks: true,
@@ -83,6 +125,7 @@
     <h1>시간표 병합결과</h1>
 </div>
 <div id='calendar'></div>
+<button onclick=calendarShot()>캡쳐</button>
 
 </body>
 </html>
