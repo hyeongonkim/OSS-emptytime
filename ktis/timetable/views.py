@@ -2,39 +2,51 @@ from django.shortcuts import get_object_or_404, render, redirect
 from .models import User
 from .forms import PostForm
 import re
+import time
 from selenium import webdriver
 from bs4 import BeautifulSoup
 
 
 def index(request):
-    user_list = User.objects.order_by('username_text')
+    token = str(time.time())
+    request.session['token'] = token
+    return redirect('account')
+
+
+def account(request):
+    token = request.session.get('token')
+    user_list = User.objects.filter(token_text=token)
     return render(request, 'timetable/index.html', {'user_list': user_list})
 
 
 def detail(request, username_text):
-    user = get_object_or_404(User, username_text=username_text)
+    token = request.session.get('token')
+    user = get_object_or_404(User, token_text=token, username_text=username_text)
     return render(request, 'timetable/detail.html', {'user': user})
 
 
 def post(request):
+    token = request.session.get('token')
     if request.method == "POST":
         form = PostForm(request.POST)
         if form.is_valid():
-            post = User(username_text=form.data['username_text'], pw_text=form.data['pw_text'])
+            post = User(token_text=token, username_text=form.data['username_text'], pw_text=form.data['pw_text'])
             post.save()
-            return redirect('index')
+            return redirect('account')
     else:
         form = PostForm()
     return render(request, 'timetable/forms.html', {'form': form})
 
 
 def delete(request, username_text):
-    user = User.objects.get(username_text=username_text)
+    token = request.session.get('token')
+    user = User.objects.get(token_text=token, username_text=username_text)
     user.delete()
-    return redirect('index')
+    return redirect('account')
 
 
 def result(request):
+    token = request.session.get('token')
     options = webdriver.ChromeOptions()
     options.add_argument('headless')
     options.add_argument('window-size=1920x1080')
@@ -144,10 +156,11 @@ def result(request):
         return out_list
 
     timetables = list()
-    users = User.objects.order_by('username_text')
+    users = User.objects.filter(token_text=token)
     for i in users:
         timetables.extend(parse_table(i.username_text, i.pw_text))
     driver.quit()
+    users.delete()
 
     mon, tue, wed, thu, fri, sat = processed_table(timetables)
     del timetables

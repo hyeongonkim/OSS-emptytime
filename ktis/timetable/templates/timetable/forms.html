@@ -8,11 +8,11 @@
 <div>
     <h1>Add User</h1>
 </div>
-<div class="User Account">
+<div class="UserAccount">
    <form method="POST" class="post-form">
-       {%csrf_token%}  <!-- 보안이슈로 입력 -->
+       {%csrf_token%}
        {{form.as_p}}
-     <button type="submit" class="save btn btn-default">Save</button>
+       <button type="submit" class="save btn btn-default">Save</button>
    </form>
   </div>
 </body>
