@@ -5,7 +5,7 @@ import django
 django.setup()
 from notice.models import Mytag,  RecentTitle
 from django.contrib.auth.models import User
-
+from django.core.mail import EmailMessage
 def search():
     user_list = []
     for userName in User.objects.all():
@@ -13,8 +13,18 @@ def search():
 
     for user in user_list:
         user_tag_list = []
-        for user_tag in Mytag.object.filter(account__username=user):
+        for user_tag in Mytag.objects.filter(account__username=user):
             user_tag_list.append(user_tag.myTag)
+        for word in user_tag_list:
+            keyword=RecentTitle.objects.filter(recent_SW_notie__icontains=word)
+            if keyword.count() !=0:
+                email = EmailMessage(user, word, to=['star054321@naver.com'])
+                email.send()
+
+if __name__=='__main__':
+    search()
+
+
 
 
 
