@@ -12,7 +12,7 @@
 {% if user_list %}
     <ul>
         {% for username in user_list %}
-        <li><a href="{{username.username_text}}">{{ username.username_text }}</a></li>
+            <a href="{% url 'timetable:delete' username_text=username.username_text %}">{{ username.username_text }}</a>
         {% endfor %}
     </ul>
 {% else %}

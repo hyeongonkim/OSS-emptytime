@@ -19,12 +19,6 @@ def account(request):
     return render(request, 'timetable/index.html', {'user_list': user_list})
 
 
-def detail(request, username_text):
-    token = request.session.get('token')
-    user = get_object_or_404(User, token_text=token, username_text=username_text)
-    return render(request, 'timetable/detail.html', {'user': user})
-
-
 def post(request):
     token = request.session.get('token')
     if request.method == "POST":
@@ -40,7 +34,7 @@ def post(request):
 
 def delete(request, username_text):
     token = request.session.get('token')
-    user = User.objects.get(token_text=token, username_text=username_text)
+    user = get_object_or_404(User, token_text=token, username_text=username_text)
     user.delete()
     return redirect('timetable:account')
 
