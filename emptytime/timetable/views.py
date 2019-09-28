@@ -52,7 +52,7 @@ def result(request):
     options.add_argument('window-size=1920x1080')
     options.add_argument("disable-gpu")
     options.add_argument("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36")
-    driver = webdriver.Chrome('C:/workspace/temp/OSS-emptytime/chromedriver.exe', chrome_options=options)
+    driver = webdriver.Chrome('/Users/simonkim/PycharmProjects/KTISparse/chromedriver', chrome_options=options)
     def parse_table(username, pw):
         driver.get('https://ktis.kookmin.ac.kr')
 
