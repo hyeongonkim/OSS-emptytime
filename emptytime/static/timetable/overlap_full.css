@@ -16,3 +16,8 @@
 .btn-gradient {
     color: #ffffff !important;
 }
+
+.login100-form-btn {
+    background-color: #646bff !important;
+    -webkit-box-shadow: 0 0 0 0 rgba(87, 184, 70, 0.5) !important;
+}

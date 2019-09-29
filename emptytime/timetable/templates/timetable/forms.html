@@ -1,19 +1,109 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
+    <title>KTIS Login</title>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="{% static 'timetable/adduser/images/icons/favicon.ico'%}"/>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'timetable/adduser/vendor/bootstrap/css/bootstrap.min.css'%}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'timetable/adduser/fonts/font-awesome-4.7.0/css/font-awesome.min.css'%}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'timetable/adduser/fonts/iconic/css/material-design-iconic-font.min.css'%}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'timetable/adduser/vendor/animate/animate.css'%}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'timetable/adduser/vendor/css-hamburgers/hamburgers.min.css'%}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'timetable/adduser/vendor/animsition/css/animsition.min.css'%}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'timetable/adduser/vendor/select2/select2.min.css'%}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'timetable/adduser/vendor/daterangepicker/daterangepicker.css'%}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'timetable/adduser/css/util.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'timetable/adduser/css/main.css'%}">
+    <link href="{% static 'timetable/overlap_full.css'%}" rel='stylesheet'/>
+    <!--===============================================================================================-->
 </head>
 <body>
-<div>
-    <h1>Add User</h1>
+
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100 p-t-85 p-b-20">
+			<span class="login100-form-title p-b-70">
+				KTIS Account
+			</span>
+            <span class="login100-form-avatar">
+				<img src="{% static 'timetable/adduser/images/kmulogo.jpg'%}" alt="AVATAR">
+			</span>
+
+            <form method="POST" class="post-form">
+                {%csrf_token%}
+
+                <div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate="Enter username">
+                    {{ form.username_text }}
+                    <span class="focus-input100" data-placeholder="Student ID"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input m-b-50" data-validate="Enter password">
+                    {{ form.pw_text }}
+                    <span class="focus-input100" data-placeholder="Password"></span>
+                </div>
+
+                <div class="container-login100-form-btn">
+                    <button type="submit" class="login100-form-btn">
+                        Login
+                    </button>
+                </div>
+
+            </form>
+
+            <ul class="login-more p-t-190">
+                <li class="m-b-8">
+					<span class="txt1">
+						비밀번호 5회 오류시 종합정보시스템(ktis.kookmin.ac.kr)에서 비밀번호를 변경해주세요.
+					</span>
+                </li>
+
+                <li>
+					<span class="txt1">
+						입력하신 계정은 시간표 계산에만 이용되며 이후 서버에서 완전히 삭제됩니다.
+					</span>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
-<div class="UserAccount">
-   <form method="POST" class="post-form">
-       {%csrf_token%}
-       {{form.as_p}}
-       <button type="submit" class="save btn btn-default">Save</button>
-   </form>
-  </div>
+
+
+<div id="dropDownSelect1"></div>
+
+<!--===============================================================================================-->
+<script src="{% static 'timetable/adduser/vendor/jquery/jquery-3.2.1.min.js'%}"></script>
+<!--===============================================================================================-->
+<script src="{% static 'timetable/adduser/vendor/animsition/js/animsition.min.js'%}"></script>
+<!--===============================================================================================-->
+<script src="{% static 'timetable/adduser/vendor/bootstrap/js/popper.js'%}"></script>
+<script src="{% static 'timetable/adduser/vendor/bootstrap/js/bootstrap.min.js'%}"></script>
+<!--===============================================================================================-->
+<script src="{% static 'timetable/adduser/vendor/select2/select2.min.js'%}"></script>
+<!--===============================================================================================-->
+<script src="{% static 'timetable/adduser/vendor/daterangepicker/moment.min.js'%}"></script>
+<script src="{% static 'timetable/adduser/vendor/daterangepicker/daterangepicker.js'%}"></script>
+<!--===============================================================================================-->
+<script src="{% static 'timetable/adduser/vendor/countdowntime/countdowntime.js'%}"></script>
+<!--===============================================================================================-->
+<script src="{% static 'timetable/adduser/js/main.js'%}"></script>
+
 </body>
 </html>
