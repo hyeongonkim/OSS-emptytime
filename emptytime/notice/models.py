@@ -18,3 +18,12 @@ class RecentTitle(models.Model):
     recent_SW_notie = models.CharField(max_length=120)
     def __str__(self):
         return self.recent_SW_notie
+class RecentKmTitle(models.Model):
+    recent_KM_notie = models.CharField(max_length=120)
+    def __str__(self):
+        return self.recent_KM_notie
+class KmTitle(models.Model):
+    km_title = models.CharField(max_length=500)
+
+    def __str__(self):
+        return self.km_title

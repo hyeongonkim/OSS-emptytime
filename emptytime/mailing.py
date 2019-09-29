@@ -18,7 +18,7 @@ def search():
         for word in user_tag_list:
             keyword=RecentTitle.objects.filter(recent_SW_notie__icontains=word)
             if keyword.count() !=0:
-                email = EmailMessage(user, word, to=['star054321@naver.com'])
+                email = EmailMessage(user, word, to=[User.objects.get(username=user).email])
                 email.send()
 
 if __name__=='__main__':

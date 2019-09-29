@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from .forms import UserForm, LoginForm, TagForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
+
 def home(request):
     return render(request, 'notice/home.html')
 
@@ -50,6 +51,7 @@ def signin(request):
     else:
         form = LoginForm()
         return render(request, 'notice/login.html', {'form': form})
+
 def addTag(request):
   if request.method == "POST":
       form = TagForm(request.POST)
@@ -69,3 +71,4 @@ def delTag(request, tag_id):
     item.delete()
 
     return redirect('control')
+

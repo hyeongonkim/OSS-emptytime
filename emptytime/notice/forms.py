@@ -11,10 +11,16 @@ class UserForm(forms.ModelForm):
         labels = {
             'username': _('ID'),
         }
+        widgets = {
+            'password': forms.PasswordInput(attrs={'class': 'form-control'}),
+        }
 class LoginForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'password']
+        widgets = {
+            'password': forms.PasswordInput(attrs={'class': 'form-control'}),
+        }
 # class EmailForm(ModelForm):
 #     class Meta:
 #         model = EmailAccount
