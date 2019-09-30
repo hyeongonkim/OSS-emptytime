@@ -7,6 +7,7 @@
 <body>
     <h1>Email서비스 컨트롤 템플릿</h1>
     <a href="{% url 'addTag' %}">태그 추가</a>
+    <a href="{% url 'email' %}">공지사항으로</a>
     <h2>공사중</h2>
 
     {% for tag in tag_list  %}

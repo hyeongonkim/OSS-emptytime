@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from . models import TitleData, Mytag
+from . models import TitleData, Mytag , KmTitle
 from django.http import HttpResponse
 from .forms import UserForm, LoginForm, TagForm
 from django.contrib.auth.models import User
@@ -12,6 +12,7 @@ def home(request):
 def email(request):
     context = {
         'notice_list': TitleData.objects.all(),
+        'km_notice_list' : KmTitle.objects.all(),
     }
     return render(request, 'notice/email.html', context)
 
@@ -45,7 +46,7 @@ def signin(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('control')
+            return redirect('email')
         else:
             return HttpResponse('로그인 실패. 다시 시도 해보세요.')
     else:

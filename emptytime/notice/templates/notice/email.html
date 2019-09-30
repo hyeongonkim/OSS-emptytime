@@ -9,9 +9,15 @@
     <a href="{% url 'control' %}">관리 </a>
     <a href="{% url 'join' %}">아직도 회원이 아니세요?</a>
     <a href="{% url 'login' %}">로그인</a>
+    <h1>-----------소융대 공지사항-------------------------</h1>
     {% for notice in notice_list%}
         <h3>{{notice.title}}}</h3>
     {% endfor%}
+    <h1>-----------국민대 공지사항-------------------------</h1>
+    {% for km_notice in km_notice_list %}
+        <h2>{{km_notice.km_title}}</h2>
+    {% endfor %}
+
 
 
 
