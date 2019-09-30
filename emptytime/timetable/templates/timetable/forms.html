@@ -2,45 +2,36 @@
 {% load static %}
 <html lang="en">
 <head>
-    <title>KTIS Login</title>
+
+    <title>TIMEPUSH - KTIS Login</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="{% static 'timetable/adduser/images/icons/favicon.ico'%}"/>
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css"
-          href="{% static 'timetable/adduser/vendor/bootstrap/css/bootstrap.min.css'%}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css"
-          href="{% static 'timetable/adduser/fonts/font-awesome-4.7.0/css/font-awesome.min.css'%}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css"
-          href="{% static 'timetable/adduser/fonts/iconic/css/material-design-iconic-font.min.css'%}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{% static 'timetable/adduser/vendor/animate/animate.css'%}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css"
-          href="{% static 'timetable/adduser/vendor/css-hamburgers/hamburgers.min.css'%}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css"
-          href="{% static 'timetable/adduser/vendor/animsition/css/animsition.min.css'%}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{% static 'timetable/adduser/vendor/select2/select2.min.css'%}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css"
-          href="{% static 'timetable/adduser/vendor/daterangepicker/daterangepicker.css'%}">
-    <!--===============================================================================================-->
+
+    <link rel="icon" type="image/png" href="{% static 'lib/favicon.ico'%}"/>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'lib/bootstrap/css/bootstrap.min.css'%}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'lib/fontawesome-free/css/fontawesome.min.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'lib/iconic/css/material-design-iconic-font.min.css'%}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'lib/animate/animate.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'lib/css-hamburgers/hamburgers.min.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'lib/animsition/css/animsition.min.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'lib/select2/select2.min.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'lib/daterangepicker/daterangepicker.css'%}">
+
     <link rel="stylesheet" type="text/css" href="{% static 'timetable/adduser/css/util.css'%}">
     <link rel="stylesheet" type="text/css" href="{% static 'timetable/adduser/css/main.css'%}">
+
     <link href="{% static 'timetable/overlap_full.css'%}" rel='stylesheet'/>
-    <!--===============================================================================================-->
+
 </head>
 <body>
 
 <div class="limiter">
     <div class="container-login100">
-        <div class="wrap-login100 p-t-85 p-b-20">
-			<span class="login100-form-title p-b-70">
+        <div class="wrap-login100 p-t-30 p-b-20">
+			<span class="login100-form-title p-b-50">
 				KTIS Account
 			</span>
             <span class="login100-form-avatar">
@@ -50,7 +41,7 @@
             <form method="POST" class="post-form">
                 {%csrf_token%}
 
-                <div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate="Enter username">
+                <div class="wrap-input100 validate-input m-t-50 m-b-35" data-validate="Enter username">
                     {{ form.username_text }}
                     <span class="focus-input100" data-placeholder="Student ID"></span>
                 </div>
@@ -68,8 +59,14 @@
 
             </form>
 
-            <ul class="login-more p-t-190">
-                <li class="m-b-8">
+            <ul class="login-more p-t-50">
+                <li>
+					<span class="txt1">
+						계정을 잘못 입력할 경우 시간표 계산이 정상적으로 진행되지 않을 수 있습니다.
+					</span>
+                </li>
+
+                <li>
 					<span class="txt1">
 						비밀번호 5회 오류시 종합정보시스템(ktis.kookmin.ac.kr)에서 비밀번호를 변경해주세요.
 					</span>
@@ -88,21 +85,13 @@
 
 <div id="dropDownSelect1"></div>
 
-<!--===============================================================================================-->
-<script src="{% static 'timetable/adduser/vendor/jquery/jquery-3.2.1.min.js'%}"></script>
-<!--===============================================================================================-->
-<script src="{% static 'timetable/adduser/vendor/animsition/js/animsition.min.js'%}"></script>
-<!--===============================================================================================-->
-<script src="{% static 'timetable/adduser/vendor/bootstrap/js/popper.js'%}"></script>
-<script src="{% static 'timetable/adduser/vendor/bootstrap/js/bootstrap.min.js'%}"></script>
-<!--===============================================================================================-->
-<script src="{% static 'timetable/adduser/vendor/select2/select2.min.js'%}"></script>
-<!--===============================================================================================-->
-<script src="{% static 'timetable/adduser/vendor/daterangepicker/moment.min.js'%}"></script>
-<script src="{% static 'timetable/adduser/vendor/daterangepicker/daterangepicker.js'%}"></script>
-<!--===============================================================================================-->
-<script src="{% static 'timetable/adduser/vendor/countdowntime/countdowntime.js'%}"></script>
-<!--===============================================================================================-->
+<script src="{% static 'lib/jquery.js'%}"></script>
+<script src="{% static 'lib/animsition/js/animsition.min.js'%}"></script>
+<script src="{% static 'lib/bootstrap/js/bootstrap.min.js'%}"></script>
+<script src="{% static 'lib/select2/select2.min.js'%}"></script>
+<script src="{% static 'lib/daterangepicker/moment.min.js'%}"></script>
+<script src="{% static 'lib/daterangepicker/daterangepicker.js'%}"></script>
+<script src="{% static 'lib/countdowntime/countdowntime.js'%}"></script>
 <script src="{% static 'timetable/adduser/js/main.js'%}"></script>
 
 </body>
