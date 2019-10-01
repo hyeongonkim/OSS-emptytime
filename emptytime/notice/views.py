@@ -34,7 +34,7 @@ def signup(request):
         if form.is_valid():
             new_user = User.objects.create_user(**form.cleaned_data)
             login(request, new_user)
-            return redirect('email')
+            return redirect('notice:email')
     else:
         form = UserForm()
         return render(request, 'notice/adduser.html', {'form': form})
@@ -46,7 +46,7 @@ def signin(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('email')
+            return redirect('notice:email')
         else:
             return HttpResponse('로그인 실패. 다시 시도 해보세요.')
     else:
@@ -61,7 +61,7 @@ def addTag(request):
 
           form.save()
 
-          return redirect('control')
+          return redirect('notice:control')
   account = request.user
 
   form = TagForm(initial={'account': account})
@@ -71,5 +71,5 @@ def delTag(request, tag_id):
     item=get_object_or_404(Mytag, pk = tag_id)
     item.delete()
 
-    return redirect('control')
+    return redirect('notice:control')
 

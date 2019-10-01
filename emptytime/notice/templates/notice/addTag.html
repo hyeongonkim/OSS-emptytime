@@ -6,7 +6,7 @@
 </head>
 <body>
 <h2>태그추가</h2>
-<form method="post" action="{% url 'addTag' %}">
+<form method="post" action="{% url 'notice:addTag' %}">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">등록</button>

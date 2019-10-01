@@ -6,9 +6,9 @@
 </head>
 <body>
     <h1> 준호가 만든 웹앱 들어갈 자리다</h1>
-    <a href="{% url 'control' %}">관리 </a>
-    <a href="{% url 'join' %}">아직도 회원이 아니세요?</a>
-    <a href="{% url 'login' %}">로그인</a>
+    <a href="{% url 'notice:control' %}">관리 </a>
+    <a href="{% url 'notice:join' %}">아직도 회원이 아니세요?</a>
+    <a href="{% url 'notice:login' %}">로그인</a>
     <h1>-----------소융대 공지사항-------------------------</h1>
     {% for notice in notice_list%}
         <h3>{{notice.title}}}</h3>
