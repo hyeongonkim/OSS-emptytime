@@ -55,3 +55,8 @@
     margin: 1%;
     max-width: 48%;
 }
+
+.fixText {
+    font-size: 1.2rem !important;
+    font-weight: 400 !important;
+}

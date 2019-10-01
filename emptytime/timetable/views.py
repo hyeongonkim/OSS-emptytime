@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404, render, redirect
+from selenium.common.exceptions import UnexpectedAlertPresentException
 from .models import User
 from .forms import PostForm
 import re
@@ -11,6 +12,13 @@ def index(request):
     token = str(time.time())
     request.session['token'] = token
     return redirect('timetable:account')
+
+
+def branchHome(request):
+    token = request.session.get('token')
+    user_list = User.objects.filter(token_text=token)
+    user_list.delete()
+    return redirect('notice:home')
 
 
 def account(request):
@@ -39,6 +47,10 @@ def delete(request, username_text):
     return redirect('timetable:account')
 
 
+def error(request):
+    return render(request, 'timetable/error.html')
+
+
 def result(request):
     token = request.session.get('token')
     options = webdriver.ChromeOptions()
@@ -54,8 +66,11 @@ def result(request):
         input_element.send_keys(username)
         input_element = driver.find_element_by_name("txt_passwd")
         input_element.send_keys(pw)
-
-        input_element.submit()
+        try:
+            input_element.submit()
+            driver.get('https://ktis.kookmin.ac.kr/kmu/usb.Usb0102rAGet01.do')
+        except UnexpectedAlertPresentException:
+            return ['error']
 
         driver.get('https://ktis.kookmin.ac.kr/kmu/usb.Usb0102rAGet01.do')
 
@@ -155,6 +170,10 @@ def result(request):
     for i in users:
         timetables.extend(parse_table(i.username_text, i.pw_text))
     driver.quit()
+
+    if 'error' in timetables:
+        return redirect('timetable:error')
+
     users.delete()
 
     mon, tue, wed, thu, fri, sat = processed_table(timetables)
