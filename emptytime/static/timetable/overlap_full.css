@@ -1,0 +1,62 @@
+@charset "UTF-8";
+
+.fc-time-grid-event.fc-event.fc-start.fc-end.fc-draggable.fc-resizable {
+    border-style: hidden !important;
+    margin: 0px !important;
+    background-color: #646bff;
+    border-radius: 0 !important;
+    left: 0 !important;
+    color: transparent;
+}
+
+.fc-time-grid-event.fc-event.fc-start.fc-end.fc-draggable.fc-resizable.fc-time-grid-event-inset {
+    z-index: 0 !important;
+}
+
+.btn-gradient {
+    color: #ffffff !important;
+    background-color: #646bff;
+    background-image: none;
+}
+
+.login100-form-btn {
+    background-color: #646bff !important;
+    -webkit-box-shadow: 0 0 0 0 rgba(87, 184, 70, 0.5) !important;
+}
+
+.focus-input100::before {
+    background: #646bff !important;
+}
+
+#saveImage {
+    cursor: pointer;
+}
+
+.cardBorder {
+    border-color: lightslategray;
+}
+
+.card-title {
+    color: #373642 !important;
+    font-weight: bold !important;
+}
+
+.redirectHome {
+    color: #adb5bd;
+}
+
+@media (min-width: 768px) {
+    .col-md-4 {
+        max-width: 31.33333% !important;
+    }
+}
+
+.col-6 {
+    margin: 1%;
+    max-width: 48%;
+}
+
+.fixText {
+    font-size: 1.2rem !important;
+    font-weight: 400 !important;
+}
