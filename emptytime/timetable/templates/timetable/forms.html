@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+
+    <title>종합정보시스템 계정추가</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" type="image/png" href="{% static 'lib/favicon.ico'%}"/>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'lib/bootstrap/css/bootstrap.min.css'%}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'lib/fontawesome-free/css/fontawesome.min.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'lib/iconic/css/material-design-iconic-font.min.css'%}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'lib/animate/animate.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'lib/css-hamburgers/hamburgers.min.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'lib/animsition/css/animsition.min.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'lib/select2/select2.min.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'lib/daterangepicker/daterangepicker.css'%}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'timetable/adduser/css/util.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'timetable/adduser/css/main.css'%}">
+
+    <link href="{% static 'timetable/overlap_full.css'%}" rel='stylesheet'/>
+
+</head>
+<body>
+
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100 p-t-30 p-b-20">
+			<span class="login100-form-title p-b-50">
+				KTIS Account
+			</span>
+            <span class="login100-form-avatar">
+				<img src="{% static 'timetable/adduser/images/kmulogo.jpg'%}" alt="AVATAR">
+			</span>
+
+            <form method="POST" class="post-form">
+                {%csrf_token%}
+
+                <div class="wrap-input100 validate-input m-t-50 m-b-35" data-validate="Enter username">
+                    {{ form.username_text }}
+                    <span class="focus-input100" data-placeholder="Student ID"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input m-b-50" data-validate="Enter password">
+                    {{ form.pw_text }}
+                    <span class="focus-input100" data-placeholder="Password"></span>
+                </div>
+
+                <div class="container-login100-form-btn">
+                    <button type="submit" class="login100-form-btn">
+                        Login
+                    </button>
+                </div>
+
+            </form>
+
+            <ul class="login-more p-t-50">
+                <li>
+					<span class="txt1">
+						계정을 잘못 입력할 경우 시간표 계산이 진행되지 않습니다.
+					</span>
+                </li>
+
+                <li>
+					<span class="txt1">
+						입력하신 계정은 시간표 계산 이후 서버에서 완전히 삭제됩니다.
+					</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div id="dropDownSelect1"></div>
+
+<script src="{% static 'lib/jquery.js'%}"></script>
+<script src="{% static 'lib/animsition/js/animsition.min.js'%}"></script>
+<script src="{% static 'lib/bootstrap/js/bootstrap.min.js'%}"></script>
+<script src="{% static 'lib/select2/select2.min.js'%}"></script>
+<script src="{% static 'lib/daterangepicker/moment.min.js'%}"></script>
+<script src="{% static 'lib/daterangepicker/daterangepicker.js'%}"></script>
+<script src="{% static 'lib/countdowntime/countdowntime.js'%}"></script>
+<script src="{% static 'timetable/adduser/js/main.js'%}"></script>
+
+</body>
+</html>
