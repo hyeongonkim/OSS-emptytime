@@ -4,6 +4,7 @@ from .models import User
 from .forms import PostForm
 import re
 import time
+import os
 from selenium import webdriver
 from bs4 import BeautifulSoup
 
@@ -53,12 +54,13 @@ def error(request):
 
 def result(request):
     token = request.session.get('token')
+    driver_path = os.path.join(os.path.dirname(__file__), 'chromedriver')
     options = webdriver.ChromeOptions()
     options.add_argument('headless')
     options.add_argument('window-size=1920x1080')
     options.add_argument("disable-gpu")
     options.add_argument("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36")
-    driver = webdriver.Chrome('/Users/simonkim/PycharmProjects/KTISparse/chromedriver', chrome_options=options)
+    driver = webdriver.Chrome(driver_path, chrome_options=options)
     def parse_table(username, pw):
         driver.get('https://ktis.kookmin.ac.kr')
 
