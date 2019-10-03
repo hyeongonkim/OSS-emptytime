@@ -16,8 +16,6 @@ def email(request):
     }
     return render(request, 'notice/email.html', context)
 
-def empty(request):
-    return render(request, 'notice/empty.html')
 
 
 def email_control(request):
