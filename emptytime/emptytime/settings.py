@@ -25,7 +25,7 @@ SECRET_KEY = 'ntad_(jtpa^@o-9c8xwv!p0@6!8if2bid-ohn&=-42m)r#=#az'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '106.10.36.240']
 
 
 # Application definition
