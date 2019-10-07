@@ -51,7 +51,7 @@
     }
 }
 
-.col-6 {
+.col-sm-6 {
     margin: 1%;
     max-width: 48%;
 }
@@ -59,4 +59,12 @@
 .fixText {
     font-size: 1.2rem !important;
     font-weight: 400 !important;
+}
+
+.resizeMainText {
+    font-size: 3.275rem !important;
+}
+
+.resizeCardText {
+    font-size: 1.4rem !important;
 }
