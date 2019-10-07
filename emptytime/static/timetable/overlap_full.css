@@ -51,9 +51,11 @@
     }
 }
 
-.col-sm-6 {
-    margin: 1%;
-    max-width: 48%;
+@media (min-width: 576px){
+    .col-sm-6 {
+        margin: 1%;
+        max-width: 48%;
+    }
 }
 
 .fixText {
