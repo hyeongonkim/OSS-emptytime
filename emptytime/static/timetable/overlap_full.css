@@ -53,13 +53,14 @@
 
 @media (min-width: 576px){
     .col-sm-6 {
-max-width: 48% !important;
+        margin: 1%;
+        max-width: 48%;
     }
 }
 
 .col-12 {
-    margin: 1%;
-    max-width: 98%;
+    margin-top: 1%;
+    margin-bottom: 1%;
 }
 
 .fixText {
