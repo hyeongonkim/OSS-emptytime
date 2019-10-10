@@ -5,7 +5,7 @@ from . import views
 app_name='timetable'
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('index/', views.index, name='index'),
     path('clearUser/', views.branchHome, name='branch'),
     path('account/', views.account, name='account'),
     path('account/add/', views.post, name='adduser'),
