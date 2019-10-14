@@ -39,7 +39,7 @@ def search():
 if __name__=='__main__':
     if RecentTagLink.objects.first().sw_link != latestSWNotice.link:
         search()
-        temp = RecentTagLink.objects.fisrt()
+        temp = RecentTagLink.objects.first()
         temp.sw_link = TitleData.objects.first().link
         temp.save()
     if RecentTagLink.objects.first().km_link != latestKMNotice.km_link:
