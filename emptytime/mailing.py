@@ -32,7 +32,7 @@ def search():
                 if word in KMkeyword:
                     email = EmailMessage("'" + word + "'" + '(이)가 포함된 국민대공지사항이 올라왔습니다.',
                                          latestKMNotice.km_title + '\n' +
-                                         'https://cs.kookmin.ac.kr/news/notice/' + str(latestKMNotice.km_link),
+                                         'https://www.kookmin.ac.kr/site/ecampus/notice/all/'+ str(latestKMNotice.km_link),
                                          to=[User.objects.get(username=user).email])
                     email.send()
 

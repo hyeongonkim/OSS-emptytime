@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from .forms import UserForm, LoginForm, TagForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
+from django.contrib.auth import logout as django_logout
 
 
 def home(request):
@@ -34,10 +35,14 @@ def agree(request):
 def signup(request):
     if request.method == "POST":
         form = UserForm(request.POST)
+
         if form.is_valid():
+
             new_user = User.objects.create_user(**form.cleaned_data)
             login(request, new_user)
             return redirect('notice:email')
+        else:
+            return render(request, 'notice/emailError.html')
     else:
         form = UserForm()
         return render(request, 'notice/adduser.html', {'form': form})
@@ -57,7 +62,9 @@ def signin(request):
     else:
         form = LoginForm()
         return render(request, 'notice/login.html', {'form': form})
-
+def logout(request):
+    django_logout(request)
+    return redirect('notice:email')
 
 def addTag(request):
     if request.method == "POST":
@@ -77,3 +84,4 @@ def delTag(request, tag_id):
     item.delete()
 
     return redirect('notice:control')
+

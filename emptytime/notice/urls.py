@@ -8,6 +8,7 @@ urlpatterns = [
     path('agree/', views.agree, name='agree'),
     path('join/', views.signup, name= 'join'),
     path('login/', views.signin, name='login'),
+    path('logout/', views.logout, name='logout'),
     path('addTag/', views.addTag, name='addTag'),
     path('delTag/<int:tag_id>',views.delTag, name = 'delTag'),
 ]
