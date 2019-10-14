@@ -19,10 +19,13 @@ def email(request):
 
 
 def email_control(request):
-    user = request.user
-    tag_list = Mytag.objects.filter(account=user).all()
-    return render(request, 'notice/email_service_control.html', {'tag_list': tag_list})
 
+    try:
+        user = request.user
+        tag_list = Mytag.objects.filter(account=user).all()
+        return render(request, 'notice/email_service_control.html', {'tag_list': tag_list})
+    except TypeError:
+        return render(request,'notice/userNotFound.html')
 
 
 
