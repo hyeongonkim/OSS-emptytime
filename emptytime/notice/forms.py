@@ -59,24 +59,12 @@ class LoginForm(forms.ModelForm):
 #         }
 
 class TagForm(ModelForm):
+    myTag = forms.CharField(
+        widget=forms.TextInput(
+            attrs={'class': 'input100', 'name': 'tag'}
+        )
+    )
+
     class Meta:
-        model = Mytag
-        fields = ['account','myTag']
-        widgets = {
-            'account': forms.HiddenInput(),  # 어떤 계정에 저장하는지 숨김
-
-        }
-        labels = {
-            'account': _('ID입력'),
-            'myTag': _('태그 입력'),
-        }
-        help_texts = {
-            'account': _('ID를 입력해주세요'),
-            'myTag': _('태그를 입력해주세요.'),
-        }
-
-        error_messages = {
-            'name': {
-                'max_length': _("태그가 너무 깁니다. 20자 이하로 해주세요."),
-            },
-        }
+        model = User
+        fields = ('myTag',)

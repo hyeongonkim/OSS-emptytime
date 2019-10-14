@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from . models import TitleData, Mytag , KmTitle
+from .models import TitleData, Mytag, KmTitle
 from django.http import HttpResponse
 from .forms import UserForm, LoginForm, TagForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
+
 
 def home(request):
     return render(request, 'notice/home.html')
@@ -59,23 +60,20 @@ def signin(request):
 
 
 def addTag(request):
-  if request.method == "POST":
-      form = TagForm(request.POST)
-
-      if form.is_valid():
-
-          form.save()
-
-          return redirect('notice:control')
-  account = request.user
-
-  form = TagForm(initial={'account': account})
-  return render(request, 'notice/addTag.html', {'form': form})
+    if request.method == "POST":
+        account = request.user
+        form = TagForm(request.POST)
+        if form.is_valid():
+            post = Mytag(account=account, myTag=form.data['myTag'])
+            post.save()
+            return redirect('notice:control')
+    else:
+        form = TagForm()
+    return render(request, 'notice/addTag.html', {'form': form})
 
 
 def delTag(request, tag_id):
-    item=get_object_or_404(Mytag, pk = tag_id)
+    item = get_object_or_404(Mytag, pk=tag_id)
     item.delete()
 
     return redirect('notice:control')
-

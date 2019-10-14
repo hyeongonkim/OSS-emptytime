@@ -12,9 +12,10 @@ class KmTitle(models.Model):
     km_link = models.IntegerField()
     def __str__(self):
         return self.km_title
+
 class Mytag(models.Model):
     myTag = models.CharField(max_length=20)
-    account=models.ForeignKey(User,on_delete=models.CASCADE, default='1')
+    account = models.ForeignKey(User, on_delete=models.CASCADE, default='1')
     def __str__(self):
         return self.myTag
 
