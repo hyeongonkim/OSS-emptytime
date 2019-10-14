@@ -75,3 +75,32 @@
 .resizeCardText {
     font-size: 1.4rem !important;
 }
+
+.homeBack {
+    background-color: #646bff !important;
+    color: WHITE !important;
+}
+
+.homeTitleText {
+    font-size: 1.4em !important;
+}
+
+.homeDiscText {
+    color: grey !important;
+    font-size: 2em !important;
+    font-weight: bold !important;
+}
+
+.homeServiceText {
+    font-weight: bold !important;
+}
+
+.paddingOver {
+    padding: 0 !important;
+    border: transparent !important;
+}
+
+.titleNotice {
+    font-size: 1.2em !important;
+    font-weight: bold !important;
+}
