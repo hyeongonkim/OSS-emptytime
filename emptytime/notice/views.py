@@ -12,21 +12,22 @@ def home(request):
 def email(request):
     context = {
         'notice_list': TitleData.objects.all(),
-        'km_notice_list' : KmTitle.objects.all(),
+        'km_notice_list': KmTitle.objects.all(),
     }
     return render(request, 'notice/email.html', context)
 
 
-
 def email_control(request):
-
     try:
         user = request.user
         tag_list = Mytag.objects.filter(account=user).all()
         return render(request, 'notice/email_service_control.html', {'tag_list': tag_list})
     except TypeError:
-        return render(request,'notice/userNotFound.html')
+        return render(request, 'notice/userNotFound.html')
 
+
+def agree(request):
+    return render(request, 'notice/agreement.html')
 
 
 def signup(request):
@@ -39,6 +40,8 @@ def signup(request):
     else:
         form = UserForm()
         return render(request, 'notice/adduser.html', {'form': form})
+
+
 def signin(request):
     if request.method == "POST":
         form = LoginForm(request.POST)
@@ -49,10 +52,11 @@ def signin(request):
             login(request, user)
             return redirect('notice:email')
         else:
-            return HttpResponse('로그인 실패. 다시 시도 해보세요.')
+            return render(request, 'notice/error.html')
     else:
         form = LoginForm()
         return render(request, 'notice/login.html', {'form': form})
+
 
 def addTag(request):
   if request.method == "POST":
@@ -66,7 +70,8 @@ def addTag(request):
   account = request.user
 
   form = TagForm(initial={'account': account})
-  return render(request, 'notice/addTag.html',{'form':form})
+  return render(request, 'notice/addTag.html', {'form': form})
+
 
 def delTag(request, tag_id):
     item=get_object_or_404(Mytag, pk = tag_id)

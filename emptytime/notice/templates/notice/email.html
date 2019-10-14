@@ -41,7 +41,7 @@
                 <h4 class="mt-3 mb-3 fixText">회원가입하고 공지사항 키워드 알림 서비스를 이용해보세요.</h4>
                 <div>
                     <p>
-                        <a class="btn btn-lg btn-gradient" href="{% url 'notice:join' %}">Sign Up</a>
+                        <a class="btn btn-lg btn-gradient" href="{% url 'notice:agree' %}">Sign Up</a>
                         <a class="btn btn-lg btn-gradient" href="{% url 'notice:login' %}">Sign In</a><br>
                         <a class="btn btn-lg btn-gradient" href="{% url 'notice:control' %}">Manage Keyword</a>
                     </p>
@@ -87,11 +87,7 @@
         </div>
     </div>
 </div>
-<!-- Footer -->
-<footer class="footer text-center">
-    <div class="container"> </div>
-</footer>
-<!-- Bootstrap core JavaScript -->
+
 <script src="{% static 'lib/jquery.js'%}"></script>
 <script src="{% static 'timetable/result/js/style.js'%}"></script>
 <script src="{% static 'lib/bootstrap/js/bootstrap.bundle.min.js'%}"></script>

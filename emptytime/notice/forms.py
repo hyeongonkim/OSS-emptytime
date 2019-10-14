@@ -5,22 +5,42 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import User
 
 class UserForm(forms.ModelForm):
+    username = forms.CharField(
+        widget=forms.TextInput(
+            attrs={'class': 'input100', 'name': 'id'}
+        )
+    )
+    email = forms.CharField(
+        widget=forms.EmailInput(
+            attrs={'class': 'input100', 'name': 'pass'}
+        )
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={'class': 'input100', 'name': 'pass'}
+        )
+    )
+
     class Meta:
         model = User
-        fields = ['username','email', 'password']
-        labels = {
-            'username': _('ID'),
-        }
-        widgets = {
-            'password': forms.PasswordInput(attrs={'class': 'form-control'}),
-        }
+        fields = ('username', 'email', 'password',)
+
 class LoginForm(forms.ModelForm):
+    username = forms.CharField(
+        widget=forms.TextInput(
+            attrs={'class': 'input100', 'name': 'id'}
+        )
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={'class': 'input100', 'name': 'pass'}
+        )
+    )
+
     class Meta:
         model = User
-        fields = ['username', 'password']
-        widgets = {
-            'password': forms.PasswordInput(attrs={'class': 'form-control'}),
-        }
+        fields = ('username', 'password',)
+
 # class EmailForm(ModelForm):
 #     class Meta:
 #         model = EmailAccount

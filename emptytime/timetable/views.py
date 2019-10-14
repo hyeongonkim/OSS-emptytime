@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 def index(request):
     token = str(time.time())
     request.session['token'] = token
-    return redirect('timetable:account')
+    return redirect('timetable:agree')
 
 
 def branchHome(request):
@@ -20,6 +20,10 @@ def branchHome(request):
     user_list = User.objects.filter(token_text=token)
     user_list.delete()
     return redirect('notice:home')
+
+
+def agree(request):
+    return render(request, 'timetable/agreement.html')
 
 
 def account(request):
