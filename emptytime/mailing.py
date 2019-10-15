@@ -26,7 +26,7 @@ def search():
                     email = EmailMessage("'"+word+"'"+'(이)가 포함된 소융대 공지사항이 올라왔습니다.',
                                          latestSWNotice.title +'\n'+
                                          'https://cs.kookmin.ac.kr/news/notice/'+str(latestSWNotice.link) +'\n\n'+
-                                         '이 메일은 TimePush 서비스를 통해 자동으로 발송된 메일입니다.',
+                                         '- 이 메일은 TimePush 서비스를 통해 자동으로 발송되었습니다.',
                                          to=[User.objects.get(username=user).email])
                     email.send()
             if RecentTagLink.objects.first().km_link != latestKMNotice.km_link:
@@ -34,7 +34,7 @@ def search():
                     email = EmailMessage("'" + word + "'" + '(이)가 포함된 국민대 공지사항이 올라왔습니다.',
                                          latestKMNotice.km_title + '\n' +
                                          'https://www.kookmin.ac.kr/site/ecampus/notice/all/'+ str(latestKMNotice.km_link) +'\n\n'+
-                                         '이 메일은 TimePush 서비스를 통해 자동으로 발송된 메일입니다.',
+                                         '- 이 메일은 TimePush 서비스를 통해 자동으로 발송되었습니다.',
                                          to=[User.objects.get(username=user).email])
                     email.send()
 
