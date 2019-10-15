@@ -25,7 +25,7 @@ def parse():
         # 이 글에서는 Python 내장 html.parser를 이용했다.
         soup = BeautifulSoup(html, 'html.parser')
 
-        my_title = soup.find("td",{"class": "view-title"})
+        my_title = soup.find("td", {"class": "view-title"})
         if my_title == None:
             continue
 
