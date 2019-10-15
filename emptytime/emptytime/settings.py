@@ -28,9 +28,6 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', '106.10.36.240']
 
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
-
 # Application definition
 
 INSTALLED_APPS = [
